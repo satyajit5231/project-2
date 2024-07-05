@@ -1,35 +1,26 @@
-class Token {
-    constructor(name, symbol, totalSupply) {
-      this.name = name;
-      this.symbol = symbol;
-      this.totalSupply = totalSupply;
-      this.balances = {}; // Mapping of addresses to balances
+// SPDX-License-Identifier: MIT
+
+pragma solidity ^0.8.0;
+
+contract MyToken {
+    // Public variables to store token details
+    string public name = "MyToken";
+    string public symbol = "MTK";
+    uint256 public totalSupply;
+
+    // Mapping to store balances
+    mapping(address => uint256) public balances;
+
+    // Mint function to create new tokens
+    function mint(address _to, uint256 _value) public {
+        totalSupply += _value;
+        balances[_to] += _value;
     }
-    mint(address, value) {
-      if (!this.balances[address]) {
-        this.balances[address] = 0;
-      }
-      this.balances[address] += value;
-      this.totalSupply += value;
+
+    // Burn function to destroy tokens
+    function burn(address _from, uint256 _value) public {
+        require(balances[_from] >= _value, "Insufficient balance to burn");
+        totalSupply -= _value;
+        balances[_from] -= _value;
     }
-    burn(address, value) {
-      if (this.balances[address] < value) {
-        throw new Error("Insufficient balance");
-      }
-      this.balances[address] -= value;
-      this.totalSupply -= value;
-    }
-    getBalance(address) {
-      return this.balances[address] || 0;
-    }
-  }
-  const myToken = new Token("MyCoin", "MYC", 10000);
-  myToken.mint("address1", 100);
-  console.log(myToken.getBalance("address1")); 
-  try {
-    myToken.burn("address1", 150);
-  } catch (error) {
-    console.error(error.message); 
-  }
-  myToken.burn("address1", 50);
-  console.log(myToken.getBalance("address1"));
+}
