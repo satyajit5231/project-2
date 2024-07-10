@@ -1,27 +1,31 @@
-The MyToken smart contract is an implementation of a simple token on the Ethereum blockchain using Solidity. Below is a detailed description of its components and functionality:
+Hello World
+This Solidity program is a simple "Hello World" program that demonstrates the basic syntax and functionality of the Solidity programming language. The purpose of this program is to serve as a starting point for those who are new to Solidity and want to get a feel for how it works.
 
-Token Details
-The contract defines a token named "MyToken" with the symbol "MTK". It has a totalSupply variable to keep track of the total number of tokens in existence.
+Description
+This program is a simple contract written in Solidity, a programming language used for developing smart contracts on the Ethereum blockchain. The contract has a single function that returns the string "Hello World!". This program serves as a simple and straightforward introduction to Solidity programming, and can be used as a stepping stone for more complex projects in the future.
 
-Public Variables
-name: This public variable stores the name of the token, which is "MyToken".
-symbol: This public variable stores the symbol of the token, which is "MTK".
-totalSupply: This public variable keeps track of the total supply of the tokens. It is initially set to zero and changes as tokens are minted or burned.
-Balances Mapping
-The contract uses a mapping called balances to store the balance of tokens held by each address. This mapping associates an address with a corresponding token balance.
+Getting Started
+Executing program
+To run this program, you can use Remix, an online Solidity IDE. To get started, go to the Remix website at https://remix.ethereum.org/.
 
-Mint Function
-The mint function allows the creation of new tokens. It takes two parameters:
+Once you are on the Remix website, create a new file by clicking on the "+" icon in the left-hand sidebar. Save the file with a .sol extension (e.g., HelloWorld.sol). Copy and paste the following code into the file:
 
-_to: The address to which the newly created tokens will be assigned.
-_value: The number of tokens to be created.
-When the mint function is called, it increases the totalSupply by the specified _value and adds the same amount to the balance of the _to address.
+pragma solidity ^0.8.4;
 
-Burn Function
-The burn function allows the destruction of existing tokens. It takes two parameters:
+contract HelloWorld {
+    function sayHello() public pure returns (string memory) {
+        return "Hello World!";
+    }
+}
+To compile the code, click on the "Solidity Compiler" tab in the left-hand sidebar. Make sure the "Compiler" option is set to "0.8.4" (or another compatible version), and then click on the "Compile HelloWorld.sol" button.
 
-_from: The address from which the tokens will be burned.
-_value: The number of tokens to be destroyed.
-Before burning the tokens, the function checks if the _from address has a sufficient balance to burn the specified amount. If the balance is sufficient, the function decreases the totalSupply by the _value and subtracts the same amount from the balance of the _from address. If the balance is not sufficient, the function reverts with an "Insufficient balance to burn" error.
+Once the code is compiled, you can deploy the contract by clicking on the "Deploy & Run Transactions" tab in the left-hand sidebar. Select the "HelloWorld" contract from the dropdown menu, and then click on the "Deploy" button.
 
-Overall, this contract allows for basic token management, including minting new tokens and burning existing tokens, while keeping track of balances for each address and the total supply of tokens in existence.
+Once the contract is deployed, you can interact with it by calling the sayHello function. Click on the "HelloWorld" contract in the left-hand sidebar, and then click on the "sayHello" function. Finally, click on the "transact" button to execute the function and retrieve the "Hello World!" message.
+
+Authors
+Metacrafter Chris
+@metacraftersio
+
+License
+This project is licensed under the MIT License - see the LICENSE.md file for details
